@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserService {
 
     @RequestMapping(method = RequestMethod.GET, value = "/user", produces = "application/json")
-    @ResponseBody public ResponseEntity<User> retrieveUser(){
+    public ResponseEntity<User> retrieveUser(){
         final User user = new User();
         user.setUserName("Bob");
         user.setUserId("1");
