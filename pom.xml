@@ -10,8 +10,10 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>service-provider-api</module>
         <module>service-provider</module>
         <module>service-client</module>
+        <module>other-service-client</module>
     </modules>
 
 </project>

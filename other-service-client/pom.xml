@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.briandupreez.pactdemo</groupId>
-	<artifactId>service-client</artifactId>
+	<artifactId>other-service-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>service-client</name>
+	<name>other-service-client</name>
 	<description>Demo project for Pact IO</description>
 
 	<parent>
@@ -97,7 +97,7 @@
 								<consumer>
 									<name>service-client</name>
 									<!--  currently supports a file path using pactFile or a URL using pactUrl -->
-									<pactFile>pacts/provider-consumer-pact.json</pactFile>
+									<pactUrl>pacts</pactUrl>
 								</consumer>
 							</consumers>
 						</serviceProvider>

@@ -5,7 +5,7 @@
 
 	<groupId>net.briandupreez.pactdemo</groupId>
 	<artifactId>service-provider</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>service-provider</name>
@@ -35,6 +35,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>net.briandupreez.pactdemo</groupId>
+			<artifactId>service-provider-api</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/au.com.dius/pact-jvm-provider-junit_2.10 -->
+		<dependency>
+			<groupId>au.com.dius</groupId>
+			<artifactId>pact-jvm-provider-junit_2.10</artifactId>
+			<version>2.4.18</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -55,18 +66,16 @@
 						<!-- You can define as many as you need, but each must have a unique name -->
 						<serviceProvider>
 							<name>test_provider</name>
-							<!--<name>service-provider</name>-->
-							<!--&lt;!&ndash; All the provider properties are optional, and have sensible defaults (shown below) &ndash;&gt;-->
-							<!--<protocol>http</protocol>-->
-							<!--<host>localhost</host>-->
-							<!--<port>8080</port>-->
-							<!--<path>/</path>-->
 							<consumers>
 								<!-- Again, you can define as many consumers for each provider as you need, but each must have a unique name -->
 								<consumer>
 									<name>test_consumer</name>
 									<!--  currently supports a file path using pactFile or a URL using pactUrl -->
 									<pactUrl>http://localhost/pacts/provider/test_provider/consumer/test_consumer/version/1.0.1</pactUrl>
+								</consumer>
+								<consumer>
+									<name>other_client</name>
+									<pactUrl>http://localhost/pacts/provider/user_service/consumer/other_client/version/1.0.1</pactUrl>
 								</consumer>
 							</consumers>
 						</serviceProvider>
