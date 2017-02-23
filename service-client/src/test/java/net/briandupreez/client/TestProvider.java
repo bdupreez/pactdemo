@@ -8,9 +8,6 @@ import au.com.dius.pact.model.PactFragment;
 import net.briandupreez.provider.User;
 import org.junit.Rule;
 import org.junit.Test;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -30,6 +27,7 @@ public class TestProvider {
         headers.put("content-type", "application/json");
 
         return builder
+                .given("default")
                 .uponReceiving("Test User Service")
                 .path("/user/1")
                 .method("GET")
@@ -46,6 +44,31 @@ public class TestProvider {
                         "}")
                 .toFragment();
     }
+
+    @Pact(state = "extra", provider = "test_provider", consumer = "test_consumer")
+    public PactFragment createExtraFragment(PactDslWithProvider builder) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("content-type", "application/json");
+
+        return builder
+                .given("extra")
+                .uponReceiving("Test User Service")
+                .path("/user/1")
+                .method("GET")
+                .willRespondWith()
+                .status(200)
+                .headers(headers)
+                .body("{" +
+                        "  \"userName\": \"Bob\",\n" +
+                        "  \"userId\": \"1\",\n" +
+                        "  \"firstName\": null,\n" +
+                        "  \"lastName\": null,\n" +
+                        "  \"email\": null,\n" +
+                        "  \"groups\": null\n" +
+                        "}")
+                .toFragment();
+    }
+
 
     @Test
     @PactVerification("test_provider")

@@ -2,6 +2,7 @@ package net.briandupreez.provider;
 
 import au.com.dius.pact.provider.junit.PactRunner;
 import au.com.dius.pact.provider.junit.Provider;
+import au.com.dius.pact.provider.junit.State;
 import au.com.dius.pact.provider.junit.VerificationReports;
 import au.com.dius.pact.provider.junit.loader.PactBroker;
 import au.com.dius.pact.provider.junit.target.HttpTarget;
@@ -30,6 +31,17 @@ public class TestPacts {
     public static void startSpring(){
         application = SpringApplication.run(ProviderServiceApplication.class);
     }
+
+    @State({"default", "extra"})
+    public void toDefaultState() {
+        System.out.println("Now service in default state");
+    }
+
+
+//    @State("extra")
+//    public void toExtraState() {
+//        System.out.println("Now service in extra state");
+//    }
 
     @AfterClass
     public static void kill(){
